@@ -1,0 +1,38 @@
+{
+  "name": "sw-register",
+  "description": "use serviceWorker or fallback to indexedDB",
+  "main": "index.js",
+  "keywords": [
+    "serviceworker",
+    "browser"
+  ],
+  "version": "0.0.0",
+  "browserify": {
+    "transform": []
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build-js-main && npm run build-js-sw",
+    "build-js-main": "browserify -d example/example.js > example/bundle.js",
+    "build-js-sw": "browserify -d example/worker.js > example/sw-bundle.js",
+    "watch-js-sw": "watchify example/worker.js -o example/sw-bundle.js -dv",
+    "watch-js-main": "watchify example/example.js -o example/bundle.js -dv",
+    "dev": "npm run watch-js-main & npm run watch-js-sw & npm run server",
+    "server": "node server.js"
+  },
+  "author": "Nick Thomas <nichoth@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nichoth/sw-register.git"
+  },
+  "license": "ISC",
+  "peerDependencies": {},
+  "devDependencies": {
+    "ecstatic": "^0.8.0",
+    "serviceworker-cache-polyfill": "^3.0.0",
+    "whatwg-fetch": "^0.9.0"
+  },
+  "dependencies": {
+    "es6-promise": "^2.3.0"
+  }
+}
